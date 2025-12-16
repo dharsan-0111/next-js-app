@@ -15,4 +15,4 @@ jobs:
     - name: Log in to DockerHub
       run: echo ${{ secrets.DOCKERHUB_PAT }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
     - name: Push to DockerHub
-      run: doker push dsee07/next-js-app:latest
+      run: docker push dsee07/next-js-app:latest
