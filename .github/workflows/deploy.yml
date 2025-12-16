@@ -1,18 +1,18 @@
-
-name: Deploy
+name: Deployment
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   deploy:
-
     runs-on: ubuntu-latest
-
 
     steps:
     - uses: actions/checkout@v4
-    - run: docker build . -t harishneel/next-js-app
-    - run: echo "${{secrets.DOCKERHUB_PASSWORD}}" | docker login -u ${{secrets.DOCKERHUB_USERNAME}} --password-stdin 
-    - run: docker push harishneel/next-js-app:latest
+    - name: "Deploying Application"
+      run: docker build . -t dsee07/next-js-app
+    - name: Log in to DockerHub
+      run: echo ${{ secrets.DOCKERHUB_PAT }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+    - name: Push to DockerHub
+      run: doker push dsee07/next-js-app:latest
